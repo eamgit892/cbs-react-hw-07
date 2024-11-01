@@ -26,6 +26,13 @@ function Sidebar(){
                     <li>
                         <a href="/users">Users</a>
                     </li>
+                    <li>
+                        <NavLink to="/lexical-env">Lexical Environment</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/vars-explained">Variables explained</NavLink>
+                    </li>
+
                 </ul>
             </nav>
         </div>

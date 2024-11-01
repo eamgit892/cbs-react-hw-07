@@ -17,6 +17,8 @@ import ErrorPage from './Pages/ErrorPage/ErrorPage';
 import Users from './Pages/Users/Users';
 import { UserPage } from './Pages/Users/UserPage';
 import usersData from './data/usersTest.json'; 
+import LexEnv from './Pages/LexEnvArticle/LexEnv';
+import Vars from './Pages/Vars/Vars';
 
 
 const Root = () => {
@@ -35,6 +37,9 @@ const router = createBrowserRouter(
             <Route path='/users'      element={<Users/>} />
             <Route path='users/:userId' 
             loader={loader}           element={<UserPage/>} />
+            <Route path='/lexical-env'  element={<LexEnv/>} />
+            <Route path='/vars-explained'  element={<Vars/>} />
+
         </Route>
     )
 )
