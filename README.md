@@ -1,3 +1,12 @@
+### The task 3 
+
+Замість json файлу usersData всередині методу loader реалізувати fetch за посиланням 
+https://jsonplaceholder.typicode.com/users , отримані дані відфільтрувати та передати в return той 
+обʼєкт який необхідно. Для виконання цього завдання підготуйте компонент Users таким чином, 
+щоб він обробляв посилання з іменами із https://jsonplaceholder.typicode.com/users . Також 
+модифікуйте компонент UserPage, для виведення даних обʼєкту із jsonplaceholder.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

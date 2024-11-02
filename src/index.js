@@ -20,6 +20,7 @@ import usersData from './data/usersTest.json';
 import LexEnv from './Pages/LexEnvArticle/LexEnv';
 import Vars from './Pages/Vars/Vars';
 
+var usersData2 = getUsersData();
 
 const Root = () => {
     return (<App />)
@@ -34,9 +35,14 @@ const router = createBrowserRouter(
             <Route path='/resources'  element={<Resources/>} />
             <Route path='/about'      element={<About/>} />
             <Route path='*'           element={<ErrorPage/>} />
-            <Route path='/users'      element={<Users/>} />
+            
+            {/* USERS ------------------------------------------------ */}
+            <Route path='/users'      element={<Users/>} 
+            loader={() => usersData2}
+            />
+
             <Route path='users/:userId' 
-            loader={loader}           element={<UserPage/>} />
+                loader={loader}           element={<UserPage/>} />
             <Route path='/lexical-env'  element={<LexEnv/>} />
             <Route path='/vars-explained'  element={<Vars/>} />
 
@@ -51,11 +57,34 @@ root.render(
     </RouterProvider>
 );
 
+async function getUsersData() {
+    const url = "https://jsonplaceholder.typicode.com/users";
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+            }
+            const json = await response.json();
+            console.log(Object.keys(json))
+            localStorage.setItem('usersData', JSON.stringify(json))
+            return json 
+        } catch (error) {
+            console.error(error.message);
+        }
+}
+
+
+
 function loader(obj) {
+    console.dir(Object.keys(obj))
     let userId =obj.params.userId 
-    console.log(userId)
-    const user = usersData.filter(u => u.id == userId)
+    console.log(`USER ID IN USER LOADER ${userId}`)
+    
+    let usersData2 = JSON.parse(localStorage.getItem('usersData'))
+
+    const user = usersData2.filter(u => u.id == userId)
     console.log(user[0])
+  
     return user[0]
 }
 
